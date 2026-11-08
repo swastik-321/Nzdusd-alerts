@@ -53,6 +53,18 @@ def telegram(msg):
     body = urllib.parse.urlencode({"chat_id": TG_CHAT, "text": msg}).encode()
     urllib.request.urlopen(urllib.request.Request(url, body), timeout=30)
 
+def ntfy(msg):
+    try:
+        req = urllib.request.Request(
+            "https://ntfy.sh/newzupdate_aagya_swastikkk_030201",
+            msg.encode("utf-8"),
+            {"Title": "NZDUSD Alert", "Priority": "high"},
+        )
+        urllib.request.urlopen(req, timeout=30)
+    except Exception as e:
+        print("ntfy error", e)
+
+
 def main():
     seen = set(json.load(open(SEEN_FILE))) if os.path.exists(SEEN_FILE) else set()
     first_run = not os.path.exists(SEEN_FILE)
@@ -73,6 +85,8 @@ def main():
                 if reply.upper().startswith("IGNORE"):
                     continue
                 telegram(reply + "\n\n" + link)
+                ntfy(reply + "\n\n" + link)
+
         except Exception as e:
             print("feed error", feed, e)
     json.dump(sorted(new_seen)[-2000:], open(SEEN_FILE, "w"))
