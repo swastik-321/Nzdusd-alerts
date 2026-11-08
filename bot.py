@@ -94,6 +94,4 @@ def main():
             print("feed error", feed, e)
     json.dump(sorted(new_seen)[-2000:], open(SEEN_FILE, "w"))
 
-telegram("Test from bot")
-ntfy("Test from bot")
 main()
