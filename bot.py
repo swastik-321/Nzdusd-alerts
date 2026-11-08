@@ -1,4 +1,4 @@
-import os, json, re, urllib.request, urllib.parse
+import os, json, re, urllib.request, urllib.parse, time
 import xml.etree.ElementTree as ET
 
 TG_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
@@ -80,6 +80,7 @@ def main():
                 if first_run:
                     continue
                 try:
+                    time.sleep(6)
                     reply = gemini(title + " - " + desc)
                 except Exception as e:
                     print("gemini error", e)
