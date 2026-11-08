@@ -13,16 +13,16 @@ FEEDS = [
 ]
 SEEN_FILE = "seen.json"
 
-PROMPT = """You are a news filter for an NZD/USD forex trader.
+PROMPT = """You are a news filter for an NZD/USD forex trader and an Indian Nifty and Sensex F&O trader.
 Read the headline below. If it can move NZD/USD (US or NZ economic data, Fed or RBNZ actions, tariffs, sanctions, wars or escalation, China data, commodity shocks, major political events, banking stress, risk-on or risk-off shifts), reply in this exact format:
-
+Also treat it as relevant if it can move Nifty, Sensex or Bank Nifty (RBI, FII or DII flows, India data, oil, global cues, budget, big earnings). For those, start with MARKET: INDIA and write Impact on Nifty instead.
 ALERT: HIGH or MEDIUM or LOW
 Headline: one line
 What happened: max 2 sentences
 Impact on NZD/USD: Bullish, Bearish or Uncertain, with a one-line reason
 What to watch next: one line
 
-If it cannot realistically move NZD/USD, reply with exactly one word: IGNORE.
+If it cannot realistically move NZD/USD, Nifty or Sensex, reply with exactly one word: IGNORE.
 Never invent facts.
 
 Headline: """
