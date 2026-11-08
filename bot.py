@@ -9,7 +9,7 @@ FEEDS = [
     "https://www.forexlive.com/feed/news",
     "https://feeds.bbci.co.uk/news/business/rss.xml",
     "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
-    "https://www.moneycontrol.com/rss/marketreports.xml",
+    "http://feeds.feedburner.com/ndtvprofit-latest,
 ]
 SEEN_FILE = "seen.json"
 
