@@ -8,6 +8,8 @@ GEMINI_KEY = os.environ["GEMINI_API_KEY"]
 FEEDS = [
     "https://www.forexlive.com/feed/news",
     "https://feeds.bbci.co.uk/news/business/rss.xml",
+    "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
+    "https://www.moneycontrol.com/rss/marketreports.xml",
 ]
 SEEN_FILE = "seen.json"
 
