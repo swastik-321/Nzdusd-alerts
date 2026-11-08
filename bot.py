@@ -45,7 +45,7 @@ def gemini(text):
            "gemini-flash-latest:generateContent?key=" + GEMINI_KEY)
     body = json.dumps({"contents": [{"parts": [{"text": PROMPT + text}]}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json"})
-    data = json.loads(urllib.request.urlopen(req, timeout=60).read())
+    data = json.loads(urllib.request.urlopen(req, timeout=180).read())
     return data["candidates"][0]["content"]["parts"][0]["text"].strip()
 
 def telegram(msg):
