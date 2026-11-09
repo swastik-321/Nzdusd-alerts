@@ -76,8 +76,8 @@ def main():
             for link, title, desc in items(feed):
                 if link in seen:
                     continue
-                new_seen.add(link)
                 if first_run:
+                    new_seen.add(link)
                     continue
                 try:
                     time.sleep(6)
@@ -85,6 +85,7 @@ def main():
                 except Exception as e:
                     print("gemini error", e)
                     continue
+                new_seen.add(link)
                 if reply.upper().startswith("IGNORE"):
                     continue
                 telegram(reply + "\n\n" + link)
