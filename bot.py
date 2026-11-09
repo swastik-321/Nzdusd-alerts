@@ -44,7 +44,7 @@ def items(url):
 
 def gemini(text):
     url = ("https://generativelanguage.googleapis.com/v1beta/models/"
-           "gemini-flash-latest:generateContent?key=" + GEMINI_KEY)
+           "gemini-2.5-flash-lite:generateContent?key=" + GEMINI_KEY)
     body = json.dumps({"contents": [{"parts": [{"text": PROMPT + text}]}]}).encode()
     req = urllib.request.Request(url, body, {"Content-Type": "application/json"})
     data = json.loads(urllib.request.urlopen(req, timeout=180).read())
@@ -84,7 +84,10 @@ def main():
                     reply = gemini(title + " - " + desc)
                 except Exception as e:
                     print("gemini error", e)
+                    if "429" in str(e):
+                        break
                     continue
+                
                 new_seen.add(link)
                 if reply.upper().startswith("IGNORE"):
                     continue
