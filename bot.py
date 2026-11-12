@@ -12,6 +12,7 @@ FEEDS = [
     "http://feeds.feedburner.com/ndtvprofit-latest",
 ]
 SEEN_FILE = "seen.json"
+INDIA_FEEDS = ["economictimes", "ndtvprofit"]
 
 PROMPT = """You are a news filter for an NZD/USD forex trader and an Indian Nifty and Sensex F&O trader.
 Read the headline below. If it can move NZD/USD (US or NZ economic data, Fed or RBNZ actions, tariffs, sanctions, wars or escalation, China data, commodity shocks, major political events, banking stress, risk-on or risk-off shifts), reply in this exact format:
@@ -90,6 +91,8 @@ def main():
                 
                 new_seen.add(link)
                 if reply.upper().startswith("IGNORE"):
+                    continue
+                if any(k in feed for k in INDIA_FEEDS) and "ALERT: HIGH" not in reply.upper():
                     continue
                 telegram(reply + "\n\n" + link)
                 ntfy(reply + "\n\n" + link)
